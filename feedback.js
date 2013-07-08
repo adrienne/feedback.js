@@ -851,7 +851,7 @@ window.Feedback.Screenshot.prototype.review = function( dom ) {
     if ( data !== undefined ) {
         var img = new Image();
         img.src = data;
-        img.style.width = "300px";
+        img.style.width = "500px";
         dom.appendChild( img );
     }
     
