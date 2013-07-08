@@ -830,6 +830,13 @@ window.Feedback.Screenshot.prototype.data = function() {
         
         // to avoid security error break for tainted canvas   
         try {
+            // resize
+            var extra_canvas = document.createElement("canvas");
+            extra_canvas.setAttribute('width',canvas.width/2);
+            extra_canvas.setAttribute('height',canvas.height/2);
+            var ctx = extra_canvas.getContext('2d');
+            ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,canvas.width/2,canvas.height/2);
+
             // cache and return data
             return ( this._data = this.h2cCanvas.toDataURL() );
         } catch( e ) {}
