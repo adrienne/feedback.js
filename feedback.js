@@ -380,6 +380,9 @@ window.Feedback.Form.prototype.data = function() {
     
     var i = 0, len = this.elements.length, item, data = {};
     
+    if (len == 1)
+        return ( this._data = this.elements[0].element.value )
+    
     for (; i < len; i++) {
         item = this.elements[ i ];
         data[ item.name ] = item.element.value;
