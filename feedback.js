@@ -836,10 +836,19 @@ window.Feedback.Screenshot.prototype.data = function() {
             // resize
             var canvas = this.h2cCanvas;
             var extra_canvas = document.createElement("canvas");
-            extra_canvas.setAttribute('width',canvas.width/2);
-            extra_canvas.setAttribute('height',canvas.height/2);
+            
+            var canvasWidth = canvas.width;
+            var canvasHeight = canvas.height;
+            
+            if (canvasWidth/2 > 600 && canvasHeight/2 > 300) {
+               canvasWidth = canvas.width / 2;
+               canvasHeight = canvas.height / 2;
+            }
+            
+            extra_canvas.setAttribute('width',canvasWidth);
+            extra_canvas.setAttribute('height',canvasHeight);
             var ctx = extra_canvas.getContext('2d');
-            ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,canvas.width/2,canvas.height/2);
+            ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,canvasWidth,canvasHeight);
 
             // cache and return data
             return ( this._data = extra_canvas.toDataURL() );
