@@ -380,9 +380,9 @@ window.Feedback.Form.prototype.data = function() {
     
     var i = 0, len = this.elements.length, item, data = {};
     
-    if (len == 1)
+    if (len < 2)
         return ( this._data = this.elements[0].element.value )
-    
+
     for (; i < len; i++) {
         item = this.elements[ i ];
         data[ item.name ] = item.element.value;
@@ -834,6 +834,7 @@ window.Feedback.Screenshot.prototype.data = function() {
         // to avoid security error break for tainted canvas   
         try {
             // resize
+            var canvas = this.h2cCanvas;
             var extra_canvas = document.createElement("canvas");
             extra_canvas.setAttribute('width',canvas.width/2);
             extra_canvas.setAttribute('height',canvas.height/2);
@@ -841,7 +842,7 @@ window.Feedback.Screenshot.prototype.data = function() {
             ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,canvas.width/2,canvas.height/2);
 
             // cache and return data
-            return ( this._data = this.h2cCanvas.toDataURL() );
+            return ( this._data = extra_canvas.toDataURL() );
         } catch( e ) {}
         
     }
