@@ -840,7 +840,7 @@ window.Feedback.Screenshot.prototype.data = function() {
             var canvasWidth = canvas.width;
             var canvasHeight = canvas.height;
             
-            if (canvasWidth/2 > 600 && canvasHeight/2 > 300) {
+            if (canvasWidth/2 > 600 || canvasHeight/2 > 300) {
                canvasWidth = canvas.width / 2;
                canvasHeight = canvas.height / 2;
             }
